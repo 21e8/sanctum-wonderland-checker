@@ -4,6 +4,7 @@ import { Logo } from "./logo";
 import { useCallback, useEffect, useState } from "react";
 import { PETS } from "./pets";
 import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 type SanctumResponse = {
   totalExp: number;
   globalRank: number;
@@ -67,6 +68,13 @@ export default function App() {
       <div className="flex flex-col gap-4 items-center justify-center">
         <Logo />
         <h1 className="text-4xl font-bold text-center">Wonderland Checker</h1>
+        <Link
+          className="underline hover:text-blue-400"
+          href={"https://sanc.tm/w?ref=VMPLIQ"}
+          rel="noopener"
+        >
+          Visit Wonderland
+        </Link>
       </div>
       <label htmlFor="address-input"></label>
       <div className="flex flex-col gap-4">
