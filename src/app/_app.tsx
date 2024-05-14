@@ -32,16 +32,21 @@ export default function App() {
 
   const getInfo = useCallback(
     async (address: string) => {
+      router.push(`/?address=${address}`);
+      setInfo(null);
       setError("");
       setLoading(true);
       try {
-        const json: SanctumResponse = await (
-          await fetch(
-            `https://wonderland-api2.ngrok.dev/s1/user/full?pk=${address}`
-          )
-        ).json();
+        const res = await fetch(
+          `https://wonderland-api2.ngrok.dev/s1/user/full?pk=${address}`
+        );
+        if (res.status === 404) {
+          setError("Address not found");
+          setLoading(false);
+          return;
+        }
+        const json: SanctumResponse = await res.json();
         setInfo(json);
-        router.push(`/?address=${address}`);
         setLoading(false);
       } catch (e: any) {
         setError(e.message);
