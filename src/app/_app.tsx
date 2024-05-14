@@ -54,6 +54,7 @@ export default function App() {
     const address = searchParams.get("address");
     if (address) {
       getInfo(address);
+      setAddress(address);
     }
   }, [getInfo, searchParams]);
   return (
