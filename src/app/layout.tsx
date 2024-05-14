@@ -33,33 +33,34 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
-
-      <div className="flex flex-col justify-center items-center text-center mt-16">
-        <span className="mb-8">
-          Made With ❤️ by{" "}
+      <body className={inter.className}>
+        {children}
+        <div className="flex flex-col justify-center items-center text-center mt-16">
+          <span className="mb-8">
+            Made With ❤️ by{" "}
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-blue-400"
+              href={config.twitter}
+            >
+              {config.author}
+            </a>
+          </span>
           <a
             target="_blank"
             rel="noopener noreferrer"
             className="transition-colors hover:text-blue-400"
-            href={config.twitter}
+            href={config.githubRepo}
+            aria-label="Fork me on GitHub"
+            title="Fork me on GitHub"
           >
-            {config.author}
+            <i>
+              <GithubIcon className="h-12 w-12" />
+            </i>
           </a>
-        </span>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          className="transition-colors hover:text-blue-400"
-          href={config.githubRepo}
-          aria-label="Fork me on GitHub"
-          title="Fork me on GitHub"
-        >
-          <i>
-            <GithubIcon className="h-12 w-12" />
-          </i>
-        </a>
-      </div>
+        </div>
+      </body>
     </html>
   );
 }
