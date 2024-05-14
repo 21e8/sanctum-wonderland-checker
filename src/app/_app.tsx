@@ -64,7 +64,7 @@ export default function App() {
     }
   }, [getInfo, searchParams]);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-24">
+    <main className="flex min-h-screen flex-col items-center justify-center gap-6 px-4 lg:p-24">
       <div className="flex flex-col gap-4 items-center justify-center">
         <Logo />
         <h1 className="text-4xl font-bold text-center">Wonderland Checker</h1>
@@ -87,11 +87,11 @@ export default function App() {
             setError("");
             setAddress(e.target.value);
           }}
-          className="w-96 h-12 p-4 border border-gray-300 rounded-lg text-black"
+          className="w-full lg:w-96 h-12 p-4 border border-gray-300 rounded-lg text-black"
         />
         <button
           onClick={() => getInfo(address)}
-          className="w-96 px-4 py-3 bg-blue-500 text-white rounded-lg"
+          className="w-full lg:w-96 px-4 py-3 bg-blue-500 text-white rounded-lg"
           disabled={loading}
         >
           {loading ? "Loading..." : "Check"}
@@ -101,7 +101,7 @@ export default function App() {
       {info && (
         <>
           <h2 className="text-2xl font-bold text-center">Stats</h2>
-          <div className="grid grid-cols-2 gap-4 border border-white px-3 py-2 rounded-lg">
+          <div className="grid grid-cols-2 gap-4 border border-black dark:border-white px-3 py-2 rounded-lg">
             <div>Created at:</div>
             <div>{new Date(info.createdAt).toLocaleString()}</div>
             <div>Last Recorded Epoch:</div>
@@ -122,7 +122,7 @@ export default function App() {
             <div>{info.referrer}</div>
           </div>
           <h2 className="text-2xl font-bold text-center">Pets</h2>
-          <div className="grid grid-cols-2 gap-4 border border-white rounded-lg">
+          <div className="grid w-full md:w-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 border border-black dark:border-white rounded-lg">
             {info.pets.map((pet) => {
               const { image, name } = PETS.find((p) => p.mint === pet.mint)!;
               return (
@@ -139,8 +139,8 @@ export default function App() {
                       className="rounded-lg"
                     />
                   </div>
-                  <div>
-                    <div className="grid grid-cols-2 gap-2 mx-6">
+                  <div className="mx-auto w-[196px]">
+                    <div className="grid grid-cols-2 gap-2 ">
                       <span>Level</span>{" "}
                       <span className="text-right">{pet.level}</span>
                       <span>Level Exp</span>
