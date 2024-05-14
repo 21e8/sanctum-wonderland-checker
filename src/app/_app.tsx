@@ -30,6 +30,7 @@ export default function App() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
+  const [displayCreatedAt, setDisplayCreatedAt] = useState(false);
 
   const getInfo = useCallback(
     async (address: string) => {
@@ -48,6 +49,11 @@ export default function App() {
         }
         const json: SanctumResponse = await res.json();
         setInfo(json);
+        if (json.createdAt === 0) {
+          setDisplayCreatedAt(false);
+        } else {
+          setDisplayCreatedAt(true);
+        }
         setLoading(false);
       } catch (e: any) {
         setError(e.message);
@@ -102,8 +108,14 @@ export default function App() {
         <>
           <h2 className="text-2xl font-bold text-center">Stats</h2>
           <div className="grid grid-cols-2 gap-4 border border-black dark:border-white px-3 py-2 rounded-lg">
-            <div>Created at:</div>
-            <div>{new Date(info.createdAt).toLocaleString()}</div>
+            {displayCreatedAt ? (
+              <>
+                <div>Created at:</div>
+                <div>{new Date(info.createdAt).toLocaleString()}</div>
+              </>
+            ) : (
+              <></>
+            )}
             <div>Last Recorded Epoch:</div>
             <div>{info.lastRecordedEpoch}</div>
             <div>Global Rank:</div>
