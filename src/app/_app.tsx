@@ -71,6 +71,7 @@ export default function App() {
           className="underline hover:text-blue-400"
           href={"https://sanc.tm/w?ref=VMPLIQ"}
           rel="noopener"
+          target="_blank"
         >
           Visit Wonderland
         </Link>
