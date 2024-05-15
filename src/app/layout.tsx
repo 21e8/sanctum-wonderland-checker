@@ -36,7 +36,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         {children}
-        <div className="flex flex-col justify-center items-center text-center mt-16">
+        <div className="flex flex-col justify-center items-center text-center my-16">
           <span className="mb-8">
             Made With ❤️ by{" "}
             <a

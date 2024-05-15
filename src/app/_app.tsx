@@ -120,35 +120,37 @@ export default function App() {
           </div>
           <h2 className="text-2xl font-bold text-center">Pets</h2>
           <div className="grid w-full md:w-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 border border-black dark:border-white rounded-lg">
-            {info.pets.map((pet) => {
-              const { image, name } = PETS.find((p) => p.mint === pet.mint)!;
-              return (
-                <div className="px-3 py-2" key={pet.mint}>
-                  <h4 className="col-span-2 text-center text-xl my-2">
-                    {name}
-                  </h4>
-                  <div className="flex flex-row items-center justify-center mb-2">
-                    <Image
-                      src={image}
-                      width={196}
-                      height={196}
-                      alt="Sanctum Pet"
-                      className="rounded-lg"
-                    />
-                  </div>
-                  <div className="mx-auto w-[196px]">
-                    <div className="grid grid-cols-2 gap-2 ">
-                      <span>Level</span>{" "}
-                      <span className="text-right">{pet.level}</span>
-                      <span>Level Exp</span>
-                      <span className="text-right">{pet.levelExp}</span>
-                      <span>Exp/Epoch</span>
-                      <span className="text-right"> {pet.expPerEpoch}</span>
+            {info.pets
+              .sort((a, b) => b.level - a.level)
+              .map((pet) => {
+                const { image, name } = PETS.find((p) => p.mint === pet.mint)!;
+                return (
+                  <div className="px-3 py-2" key={pet.mint}>
+                    <h4 className="col-span-2 text-center text-xl my-2">
+                      {name}
+                    </h4>
+                    <div className="flex flex-row items-center justify-center mb-2">
+                      <Image
+                        src={image}
+                        width={196}
+                        height={196}
+                        alt="Sanctum Pet"
+                        className="rounded-lg"
+                      />
+                    </div>
+                    <div className="mx-auto w-[196px]">
+                      <div className="grid grid-cols-2 gap-2 ">
+                        <span>Level</span>{" "}
+                        <span className="text-right">{pet.level}</span>
+                        <span>Level Exp</span>
+                        <span className="text-right">{pet.levelExp}</span>
+                        <span>Exp/Epoch</span>
+                        <span className="text-right"> {pet.expPerEpoch}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
         </>
       )}
